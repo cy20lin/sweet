@@ -1,11 +1,11 @@
-#+TITLE: cycmake
+#+TITLE: sweet
 #+STARTUP: showall
 #+AUTHOR: ChienYu Lin
 #+EMAIL: cy20lin@google.com
 
 * Introduction
 
-  =cycmake= provides some utilities that help users write =CMakeLists.txt= with ease.
+  =sweet= provides some utilities that help users write =CMakeLists.txt= with ease.
 
 * Features
 
@@ -20,10 +20,10 @@
 ** download
 
   #+BEGIN_SRC sh
-    git clone https://github.com/cy20lin/cycmake
+    git clone https://github.com/cy20lin/sweet
   #+END_SRC
 
 * License
 
-  =cycmake= is licensed under [[https://opensource.org/licenses/MIT][the MIT License]].
+  =sweet= is licensed under [[https://opensource.org/licenses/MIT][the MIT License]].
 

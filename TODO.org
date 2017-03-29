@@ -20,4 +20,4 @@
 
 * Function naming 
 
-  Add =cycmake_= prefixed function name.
+  Add =sweet_= prefixed function name.
