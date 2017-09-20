@@ -6,20 +6,20 @@
 ## License: MIT
 ##
 
-function(escape_value output value)
+function(sweet_escape_value output value)
   string(REPLACE "\\" "\\\\" ${output} "${value}")
   string(REPLACE ";" "\\;" ${output} "${value}")
   set(${output} "${${output}}" PARENT_SCOPE)
 endfunction()
 
-function(escape_values output)
+function(sweet_escape_values output)
   set("${output}" "")
   if(size EQUAL 1)
     return()
   endif()
   math(EXPR end "${ARGC} - 1")
   foreach(i RANGE 1 ${end})
-    escape_value(value "${ARGV${i}}")
+    sweet_escape_value(value "${ARGV${i}}")
     list(APPEND "${output}" "${value}")
   endforeach()
   set("${output}" "${${output}}" PARENT_SCOPE)

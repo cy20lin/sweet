@@ -8,7 +8,6 @@
 
 set(
   __core_cmake_files
-  core.cmake
   utility.cmake
   escape.cmake
   )
