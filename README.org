@@ -3,21 +3,9 @@
 #+AUTHOR: ChienYu Lin
 #+EMAIL: cy20lin@google.com
 
-* Introduction
-
   =sweet= provides some utilities that help users write =CMakeLists.txt= with ease.
 
-* Features
-
-** Commands
- 
-  + [[file:doc/command/target_create.org][target_create]]
-  + [[file:doc/command/target_add.org][target_add]]
-  + config_add
-
 * Setup
-
-** download
 
   #+BEGIN_SRC sh
     git clone https://github.com/cy20lin/sweet
