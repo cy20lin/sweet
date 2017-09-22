@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial &mdash; sweet latest documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="sweet latest documentation" href="index.html"/>
+        <link rel="next" title="Commands" href="commands.html"/>
+        <link rel="prev" title="Using Sweet" href="using-sweet.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> sweet
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="requirement.html">Requirement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-sweet.html">Using Sweet</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-problem">The problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-config-concept">The <code class="docutils literal"><span class="pre">CONFIG</span></code> concept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#abstract-package-settings-into-config">Abstract package settings into <code class="docutils literal"><span class="pre">CONFIG</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">sweet</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Tutorial</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tutorial.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-problem">
+<h2>The problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h2>
+<p>It’s painful when it comes to sharing configurations between targets in CMake,
+such as sharing sources, include directories, libraries, building options, building
+definitions, …etc.</p>
+<p>Recalling the structure of a typical cmake project file, it often contains a list
+of commands creating targets, and list of commands configuring the properties,
+including pathes, libraries, definitions, options, …etc, for each target.
+It’s annoying that sometimes some of the targets sharing with a portion of
+configuration, that is, some of the configs are the same, but still we has
+to configure these target respectively. Causing the duplication of configuration.
+Especially, when the project scaling up, those configuration codes become much more
+messy, managing those code is hard, because of the duplication of common configs.
+It is kind of unintuitive.</p>
+</div>
+<div class="section" id="the-config-concept">
+<h2>The <code class="docutils literal"><span class="pre">CONFIG</span></code> concept<a class="headerlink" href="#the-config-concept" title="Permalink to this headline">¶</a></h2>
+<p>To solve the problem. Sweet introduces the concept of <code class="docutils literal"><span class="pre">CONFIG</span></code>, a <code class="docutils literal"><span class="pre">CONFIG</span></code> is a
+identifier that internally contains set of configurations, and can be apply to
+whatever target you want latter. <code class="docutils literal"><span class="pre">CONFIG</span></code> provide a abstraction to grouping related
+configurations into a single <code class="docutils literal"><span class="pre">CONFIG</span></code> instance. It helps managing configurations for
+targets with less effort.</p>
+</div>
+<div class="section" id="abstract-package-settings-into-config">
+<h2>Abstract package settings into <code class="docutils literal"><span class="pre">CONFIG</span></code><a class="headerlink" href="#abstract-package-settings-into-config" title="Permalink to this headline">¶</a></h2>
+<p>For example, given a project has two targets, <code class="docutils literal"><span class="pre">a</span></code>, <code class="docutils literal"><span class="pre">b</span></code>, <code class="docutils literal"><span class="pre">c</span></code>.
+Target <code class="docutils literal"><span class="pre">a</span></code> depends on <code class="docutils literal"><span class="pre">Boost</span></code> and <code class="docutils literal"><span class="pre">Fmt</span></code>.
+Target <code class="docutils literal"><span class="pre">b</span></code> depends on <code class="docutils literal"><span class="pre">OpenCV</span></code> and <code class="docutils literal"><span class="pre">Fmt</span></code>.
+Target <code class="docutils literal"><span class="pre">c</span></code> depends on <code class="docutils literal"><span class="pre">Boost</span></code>, <code class="docutils literal"><span class="pre">OpenCV</span></code>, and <code class="docutils literal"><span class="pre">Fmt</span></code>.</p>
+<p>A typical <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> for that project may look like this:</p>
+<div class="code cmake highlight-default"><div class="highlight"><pre><span></span><span class="n">cmake_minimum_required</span><span class="p">(</span><span class="n">VERSION</span> <span class="mf">3.1</span><span class="p">)</span>
+<span class="n">project</span><span class="p">(</span><span class="n">a_proj</span><span class="p">)</span>
+
+<span class="c1"># Finding packages</span>
+<span class="n">find_package</span><span class="p">(</span><span class="n">Boost</span><span class="p">)</span>
+<span class="n">find_package</span><span class="p">(</span><span class="n">OpenCV</span><span class="p">)</span>
+<span class="n">find_package</span><span class="p">(</span><span class="n">Fmt</span><span class="p">)</span>
+
+<span class="c1"># Creating targets</span>
+<span class="n">add_executable</span><span class="p">(</span><span class="n">a</span> <span class="n">src</span><span class="o">/</span><span class="n">a</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+<span class="n">add_executable</span><span class="p">(</span><span class="n">b</span> <span class="n">src</span><span class="o">/</span><span class="n">b</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+<span class="n">add_executable</span><span class="p">(</span><span class="n">c</span> <span class="n">src</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+
+<span class="c1"># Configuring target a</span>
+<span class="n">target_include_libraries</span><span class="p">(</span><span class="n">a</span> <span class="s2">&quot;$</span><span class="si">{BOOST_INCLUDE_DIRS}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">a</span> <span class="s2">&quot;$</span><span class="si">{BOOST_LIBRARIES}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">target_include_libraries</span><span class="p">(</span><span class="n">b</span> <span class="s2">&quot;$</span><span class="si">{FMT_INCLUDE_DIRS}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">b</span> <span class="s2">&quot;$</span><span class="si">{FMT_LIBRARIES}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Configuring target b</span>
+<span class="n">target_include_libraries</span><span class="p">(</span><span class="n">b</span> <span class="s2">&quot;$</span><span class="si">{OPENCV_INCLUDE_DIR}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">b</span> <span class="s2">&quot;$</span><span class="si">{OPENCV_LIBS}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">target_include_libraries</span><span class="p">(</span><span class="n">b</span> <span class="s2">&quot;$</span><span class="si">{FMT_INCLUDE_DIRS}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">b</span> <span class="s2">&quot;$</span><span class="si">{FMT_LIBRARIES}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Configuring target c</span>
+<span class="n">target_include_libraries</span><span class="p">(</span><span class="n">c</span> <span class="s2">&quot;$</span><span class="si">{BOOST_INCLUDE_DIRS}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">c</span> <span class="s2">&quot;$</span><span class="si">{BOOST_LIBRARIES}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">target_include_libraries</span><span class="p">(</span><span class="n">c</span> <span class="s2">&quot;$</span><span class="si">{OPENCV_INCLUDE_DIRS}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">c</span> <span class="s2">&quot;$</span><span class="si">{OPENCV_LIBS}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">target_include_libraries</span><span class="p">(</span><span class="n">c</span> <span class="s2">&quot;$</span><span class="si">{FMT_INCLUDE_DIRS}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">c</span> <span class="s2">&quot;$</span><span class="si">{FMT_LIBRARIES}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With the help of <code class="docutils literal"><span class="pre">sweet</span></code>, the project file <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> becomes.</p>
+<div class="code cmake highlight-default"><div class="highlight"><pre><span></span><span class="n">cmake_minimum_required</span><span class="p">(</span><span class="n">VERSION</span> <span class="mf">3.1</span><span class="p">)</span>
+<span class="n">project</span><span class="p">(</span><span class="n">a_proj</span><span class="p">)</span>
+
+<span class="c1"># Finding packages</span>
+<span class="n">find_package</span><span class="p">(</span><span class="n">Boost</span><span class="p">)</span>
+<span class="n">find_package</span><span class="p">(</span><span class="n">OpenCV</span><span class="p">)</span>
+<span class="n">find_package</span><span class="p">(</span><span class="n">Fmt</span><span class="p">)</span>
+
+<span class="c1"># Creating targets</span>
+<span class="n">add_executable</span><span class="p">(</span><span class="n">a</span> <span class="n">src</span><span class="o">/</span><span class="n">a</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+<span class="n">add_executable</span><span class="p">(</span><span class="n">b</span> <span class="n">src</span><span class="o">/</span><span class="n">b</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+<span class="n">add_executable</span><span class="p">(</span><span class="n">c</span> <span class="n">src</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+
+<span class="c1"># Create a config called boost, add boost related settings</span>
+<span class="n">sweet_config</span><span class="p">(</span><span class="n">boost</span> <span class="n">ADD</span> <span class="n">INCLUDES</span> <span class="s2">&quot;$</span><span class="si">{BOOST_INCLUDE_DIRS}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">sweet_config</span><span class="p">(</span><span class="n">boost</span> <span class="n">ADD</span> <span class="n">LIBRARIES</span> <span class="s2">&quot;$</span><span class="si">{BOOST_LIBRARIES}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a config called fmt, add fmt related settings</span>
+<span class="n">sweet_config</span><span class="p">(</span><span class="n">fmt</span> <span class="n">ADD</span> <span class="n">INCLUDES</span> <span class="s2">&quot;$</span><span class="si">{FMT_INCLUDE_DIRS}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">sweet_config</span><span class="p">(</span><span class="n">fmt</span> <span class="n">ADD</span> <span class="n">LIBRARIES</span> <span class="s2">&quot;$</span><span class="si">{FMT_LIBRARIES}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a config called opencv, add opencv related settings</span>
+<span class="n">sweet_config</span><span class="p">(</span><span class="n">opencv</span> <span class="n">ADD</span> <span class="n">INCLUDES</span> <span class="s2">&quot;$</span><span class="si">{OPENCV_INCLUDE_DIRS}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">sweet_config</span><span class="p">(</span><span class="n">opencv</span> <span class="n">ADD</span> <span class="n">LIBRARIES</span> <span class="s2">&quot;$</span><span class="si">{OPENCV_LIBS}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Apply configs for each target</span>
+<span class="n">sweet_target</span><span class="p">(</span><span class="n">a</span> <span class="n">ADD</span> <span class="n">CONFIGS</span> <span class="n">boost</span> <span class="n">fmt</span><span class="p">)</span>
+<span class="n">sweet_target</span><span class="p">(</span><span class="n">b</span> <span class="n">ADD</span> <span class="n">CONFIGS</span> <span class="n">opencv</span> <span class="n">fmt</span><span class="p">)</span>
+<span class="n">sweet_target</span><span class="p">(</span><span class="n">c</span> <span class="n">ADD</span> <span class="n">CONFIGS</span> <span class="n">boost</span> <span class="n">opencv</span> <span class="n">fmt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="commands.html" class="btn btn-neutral float-right" title="Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="using-sweet.html" class="btn btn-neutral" title="Using Sweet" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, ChienYu Lin.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'latest',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
