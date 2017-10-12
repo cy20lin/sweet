@@ -4,15 +4,22 @@
    contain the root `toctree` directive.
 .. title:: Sweet Documentation
 
+Sweet
+=====
+
+Sweet is a cmake library aims to solve the pains when using cmake,
+especially the inconvenience of sharing configurations between targets.
+
+Let's have some sweet cmake.
+
 Table of Contents
 =================
 
 .. toctree::
    :maxdepth: 1
               
-   overview
-   quick-start
-   tutorial
    requirement
+   using-sweet
+   tutorial
    commands
    variables
