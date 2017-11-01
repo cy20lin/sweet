@@ -1,6 +1,9 @@
-# message("hello!! this is test_api.cmake")
-message("${CMAKE_CURRENT_LIST_FILE}")
-message("${CMAKE_CURRENT_LIST_DIR}")
-message("${CMAKE_CURRENT_SOURCE_DIR}")
-message("${CMAKE_CURRENT_BINARY_DIR}")
-include("${CMAKE_CURRENT_LIST_DIR}/cmake/all.cmake")
+## test/test_api.cmake
+##
+## Copyright (c) 2017 ChienYu Lin
+##
+## Author: ChienYu Lin <cy20lin@gmail.com>
+## License: MIT
+##
+
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/test_api.cmake")

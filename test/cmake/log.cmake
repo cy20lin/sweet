@@ -1,4 +1,4 @@
-## cmake/log.cmake --- loggging utilities
+## test/cmake/log.cmake --- loggging utilities
 ##
 ## Copyright (c) 2017 ChienYu Lin
 ##

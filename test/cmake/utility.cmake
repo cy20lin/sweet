@@ -1,4 +1,4 @@
-## cmake/utility.cmake --- some other utilities
+## test/cmake/utility.cmake --- some other utilities
 ##
 ## Copyright (c) 2017 ChienYu Lin
 ##
