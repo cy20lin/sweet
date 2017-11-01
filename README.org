@@ -3,6 +3,9 @@
 #+AUTHOR: ChienYu Lin
 #+EMAIL: cy20lin@google.com
 
+[[http://opensource.org/licenses/MIT][https://img.shields.io/badge/License-MIT-yellow.svg]]
+[[https://travis-ci.org/cy20lin/sweet][https://img.shields.io/travis/cy20lin/sweet.svg]]
+
   =sweet= provides some utilities that help users write =CMakeLists.txt= with ease.
 
 * Setup
