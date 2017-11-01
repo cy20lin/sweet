@@ -1,0 +1,13 @@
+before_install:
+    - sudo apt-get update
+
+install:
+    - sudo apt-get install cmake
+
+before_script:
+    - which cmake
+    - cmake --version
+
+script:
+    - cmake -Bbuild -H.
+    - cmake --build build --target test
