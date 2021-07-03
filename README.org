@@ -8,6 +8,10 @@
 
   =sweet= provides some utilities that help users write =CMakeLists.txt= with ease.
 
+* Tutorial
+
+  See the [[https://cy20lin.github.io/sweet/tutorial.html][document]]
+
 * Setup
 
   #+BEGIN_SRC sh
@@ -15,6 +19,4 @@
   #+END_SRC
 
 * License
-
-  =sweet= is licensed under [[https://opensource.org/licenses/MIT][the MIT License]].
-
+=sweet= is licensed under [[https://opensource.org/licenses/MIT][the MIT License]].
